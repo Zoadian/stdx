@@ -24,3 +24,10 @@ template NestedClasses(T) {
 	alias GetMember(string s) = TypeTuple!(__traits(getMember, T, s)); 		
 	alias NestedClasses = Filter!(isClass, staticMap!(GetMember, __traits(allMembers, T)));
 }
+
+template TemplateInstanceInfo( T ) {
+	static if ( is( T t == U!V, alias U, V... ) ) {
+		alias U Template;
+		alias V Arguments;
+	}
+}
